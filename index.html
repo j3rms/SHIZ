@@ -11,12 +11,22 @@
 </head>
 <body>
 
+   <div id="splash" onclick="startExperience()" ontouchstart="startExperience()">
+        <div class="splash-inner">
+            <div class="splash-cap">🎓</div>
+            <h1 class="splash-title">A Special Surprise</h1>
+            <p class="splash-subtitle">For Someone Special</p>
+            <div class="splash-btn">
+                <span>Click to Open</span>
+            </div>
+            <p class="splash-hint">🔊 Turn your volume up</p>
+        </div>
+    </div>
+
     <!-- Background Music -->
     <audio id="bgMusic" loop>
-        <source src="Martsang Pandangal (Phonk Remix)(By DAPBeats).mp3" type="audio/mpeg">
+        <source src="your-song.mp3" type="audio/mpeg">
     </audio>
-
-    <!-- Hero Section -->
    
 
     <!-- Personal Information Card (Banner Style) -->
@@ -67,32 +77,34 @@
 
 
     <script>
-    const music = document.getElementById('bgMusic');
+        const music = document.getElementById('bgMusic');
+        const splash = document.getElementById('splash');
+        let started = false;
 
-    music.volume = 0.2;
-    music.muted = true; // trick: muted autoplay is always allowed
+        music.volume = 0.2;
 
-    window.addEventListener('load', () => {
-        music.play().then(() => {
-            // Autoplay succeeded while muted, now unmute
-            music.muted = false;
-        }).catch(() => {
-            // Still blocked — wait for first interaction
-            const playOnInteraction = () => {
-                music.muted = false;
-                music.play();
-                document.removeEventListener('click', playOnInteraction);
-                document.removeEventListener('touchstart', playOnInteraction);
-                document.removeEventListener('keydown', playOnInteraction);
-                document.removeEventListener('scroll', playOnInteraction);
-            };
-            document.addEventListener('click', playOnInteraction);
-            document.addEventListener('touchstart', playOnInteraction);
-            document.addEventListener('keydown', playOnInteraction);
-            document.addEventListener('scroll', playOnInteraction);
+        function startExperience() {
+            if (started) return; // prevent double trigger
+            started = true;
+
+            // Play music
+            music.play().catch(() => {});
+
+            // Fade out and remove splash
+            splash.style.opacity = '0';
+            splash.style.pointerEvents = 'none';
+            setTimeout(() => {
+                splash.style.display = 'none';
+            }, 800);
+        }
+
+        // Also allow keyboard Enter/Space on desktop
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                startExperience();
+            }
         });
-    });
-</script>
+    </script>
 
 </body>
 </html>

@@ -32,6 +32,121 @@ body {
     padding: 0 20px;
 }
 
+/* ===== Splash Screen ===== */
+#splash {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: linear-gradient(135deg, #060e1e 0%, #0a1830 50%, #0d2550 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.8s ease;
+}
+
+/* Subtle animated background on splash */
+#splash::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 60% 60% at 20% 50%, rgba(0, 80, 180, 0.25) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 80% 50%, rgba(0, 60, 140, 0.2) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.splash-inner {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 40px 20px;
+    animation: splashFadeIn 1.2s ease-out;
+}
+
+@keyframes splashFadeIn {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.splash-cap {
+    font-size: clamp(4rem, 10vw, 6rem);
+    margin-bottom: 24px;
+    display: block;
+    animation: capFloat 3s ease-in-out infinite;
+}
+
+@keyframes capFloat {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50%       { transform: translateY(-15px) rotate(5deg); }
+}
+
+.splash-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    color: var(--gold);
+    margin-bottom: 12px;
+    text-shadow: 0 0 40px rgba(212, 175, 55, 0.7),
+                 0 0 80px rgba(212, 175, 55, 0.3);
+    animation: titleGlow 2s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+    0%, 100% { text-shadow: 0 0 40px rgba(212, 175, 55, 0.7), 0 0 80px rgba(212, 175, 55, 0.3); }
+    50%       { text-shadow: 0 0 60px rgba(212, 175, 55, 1),   0 0 120px rgba(212, 175, 55, 0.5); }
+}
+
+.splash-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.85rem, 2.5vw, 1.2rem);
+    font-weight: 500;
+    color: var(--white);
+    opacity: 0.6;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+}
+
+.splash-btn {
+    display: inline-block;
+    padding: 18px 56px;
+    border: 2px solid var(--neon-blue);
+    border-radius: 50px;
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.85rem, 2vw, 1rem);
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    animation: btnPulse 1.8s ease-in-out infinite;
+    box-shadow: 0 0 25px rgba(0, 212, 255, 0.3),
+                inset 0 0 25px rgba(0, 212, 255, 0.05);
+}
+
+@keyframes btnPulse {
+    0%, 100% {
+        box-shadow: 0 0 25px rgba(0, 212, 255, 0.3),
+                    inset 0 0 25px rgba(0, 212, 255, 0.05);
+        border-color: var(--neon-blue);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 45px rgba(0, 212, 255, 0.6),
+                    inset 0 0 35px rgba(0, 212, 255, 0.1);
+        border-color: var(--white);
+        transform: scale(1.04);
+    }
+}
+
+.splash-hint {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+    color: var(--white);
+    opacity: 0.35;
+    letter-spacing: 1px;
+}
+
 /* ===== Glassmorphism Card ===== */
 .glass-card {
     background: var(--glass-bg);
@@ -249,7 +364,6 @@ body {
                 0 0 40px rgba(0, 140, 255, 0.2);
 }
 
-/* Background layered glow blobs */
 .banner-card::before {
     content: '';
     position: absolute;
@@ -262,7 +376,6 @@ body {
     pointer-events: none;
 }
 
-/* Diagonal accent stripes */
 .banner-diagonals {
     position: absolute;
     inset: 0;
@@ -277,7 +390,6 @@ body {
     transform: skewX(-14deg);
 }
 
-/* Wide dark-blue slash — the big right panel */
 .diag-1 {
     width: 52%;
     background: linear-gradient(180deg, #0e2d5e 0%, #0a2050 100%);
@@ -285,7 +397,6 @@ body {
     right: -4%;
 }
 
-/* Bright neon-blue edge line */
 .diag-2 {
     width: 6px;
     background: linear-gradient(180deg, var(--neon-blue), var(--accent-blue));
@@ -294,7 +405,6 @@ body {
     box-shadow: 0 0 12px var(--neon-blue), 0 0 24px var(--accent-blue);
 }
 
-/* Gold accent hairline */
 .diag-3 {
     width: 3px;
     background: var(--gold);
@@ -303,7 +413,6 @@ body {
     box-shadow: 0 0 8px var(--gold);
 }
 
-/* Soft blue secondary line */
 .diag-4 {
     width: 3px;
     background: var(--accent-blue);
@@ -312,7 +421,6 @@ body {
     box-shadow: 0 0 10px var(--accent-blue);
 }
 
-/* Banner layout */
 .banner-content {
     position: relative;
     z-index: 10;
@@ -322,7 +430,6 @@ body {
     min-height: 320px;
 }
 
-/* ── Text side ── */
 .banner-text {
     padding: 36px 40px 36px 44px;
     display: flex;
@@ -370,6 +477,43 @@ body {
     opacity: 0.75;
 }
 
+/* ===== Cum Laude Surprise Reveal ===== */
+.honors-reveal {
+    position: relative;
+    overflow: hidden;
+    margin: 6px 0;
+}
+
+.honors-reveal-cover {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, #060e1e 0%, #0a1830 50%, #0d2550 100%);
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    animation: coverSlideAway 0.8s cubic-bezier(0.77, 0, 0.175, 1) 3s forwards;
+}
+
+.cover-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.75rem, 1.5vw, 1rem);
+    font-weight: 600;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    opacity: 0.5;
+    animation: coverTextFade 0.4s ease 2.7s forwards;
+}
+
+@keyframes coverTextFade {
+    to { opacity: 0; }
+}
+
+@keyframes coverSlideAway {
+    0%   { transform: translateX(0);     opacity: 1; }
+    100% { transform: translateX(-110%); opacity: 0; }
+}
+
 .banner-honors {
     font-family: 'Montserrat', sans-serif;
     font-size: clamp(2rem, 5.5vw, 4rem);
@@ -378,42 +522,51 @@ body {
     text-transform: uppercase;
     letter-spacing: 3px;
     line-height: 1;
-    margin-top: 6px;
     text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
     border-top: 2px solid rgba(255, 255, 255, 0.2);
     border-bottom: 2px solid rgba(255, 255, 255, 0.2);
     padding: 6px 0;
+    opacity: 0;
+    transform: scale(0.6) translateY(20px);
+    animation:
+        honorsSlam 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 3.6s forwards,
+        honorsGlow 1.5s ease-in-out 4.2s infinite;
+}
+
+@keyframes honorsSlam {
+    0%   { opacity: 0; transform: scale(0.6) translateY(20px); }
+    60%  { opacity: 1; transform: scale(1.08) translateY(-4px); }
+    80%  { transform: scale(0.97) translateY(2px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes honorsGlow {
+    0%, 100% {
+        text-shadow: 0 0 20px rgba(212, 175, 55, 0.4),
+                     0 0 40px rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+    50% {
+        text-shadow: 0 0 30px rgba(212, 175, 55, 0.8),
+                     0 0 60px rgba(212, 175, 55, 0.5),
+                     0 0 90px rgba(255, 255, 255, 0.3);
+        border-color: rgba(212, 175, 55, 0.6);
+    }
 }
 
 .banner-batch {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--white);
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    opacity: 0.7;
+    opacity: 0;
+    animation: fadeInAfterReveal 0.5s ease 4s forwards;
 }
 
-.banner-pride {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.85rem, 1.8vw, 1.15rem);
-    font-weight: 900;
-    color: var(--neon-blue);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-top: 10px;
-    text-shadow: 0 0 15px rgba(0, 212, 255, 0.6);
-}
-
+.banner-pride,
 .banner-glory {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.75rem, 1.4vw, 0.95rem);
-    font-weight: 600;
-    color: var(--white);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    opacity: 0.8;
+    opacity: 0;
+    animation: fadeInAfterReveal 0.5s ease 4.3s forwards;
+}
+
+@keyframes fadeInAfterReveal {
+    to { opacity: 1; }
 }
 
 /* ── Photo side ── */
@@ -707,6 +860,10 @@ body {
     .diag-1, .diag-2, .diag-3, .diag-4 {
         display: none;
     }
+
+    .message-card {
+        padding: 40px 25px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -715,109 +872,6 @@ body {
     }
 }
 
-/* ===== Cum Laude Surprise Reveal ===== */
-.honors-reveal {
-    position: relative;
-    overflow: hidden;
-    margin: 6px 0;
-}
-
-/* The cover that hides CUM LAUDE initially */
-.honors-reveal-cover {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(105deg, #060e1e 0%, #0a1830 50%, #0d2550 100%);
-    z-index: 5;
-    display: flex;
-    align-items: center;
-
-    /* Slide away after 1.5 seconds with smoother duration */
-    animation: coverSlideAway 1.2s cubic-bezier(0.65, 0, 0.35, 1) 1.5s forwards;
-}
-
-.cover-text {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.75rem, 1.5vw, 1rem);
-    font-weight: 600;
-    color: var(--white);
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    opacity: 0.5;
-
-    /* Fade out just before the slide starts */
-    animation: coverTextFade 0.5s ease 1.3s forwards;
-}
-
-@keyframes coverTextFade {
-    to { opacity: 0; }
-}
-
-@keyframes coverSlideAway {
-    0%   { transform: translateX(0);     opacity: 1; }
-    100% { transform: translateX(-110%); opacity: 0; }
-}
-
-/* CUM LAUDE starts invisible, then slams in after cover leaves */
-.banner-honors {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(2rem, 5.5vw, 4rem);
-    font-weight: 900;
-    color: var(--white);
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    line-height: 1;
-    text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
-    border-top: 2px solid rgba(255, 255, 255, 0.2);
-    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-    padding: 6px 0;
-
-    /* Hidden until cover slides away - smoother timing */
-    opacity: 0;
-    transform: scale(0.7) translateY(15px);
-    animation:
-        honorsSlam 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 2s forwards,
-        honorsGlow 2s ease-in-out 2.8s infinite;
-}
-
-/* Dramatic slam-in - smoother transition */
-@keyframes honorsSlam {
-    0%   { opacity: 0; transform: scale(0.7) translateY(15px); }
-    50%  { opacity: 0.8; transform: scale(1.05) translateY(-2px); }
-    70%  { transform: scale(0.98) translateY(1px); }
-    85%  { transform: scale(1.01) translateY(-1px); }
-    100% { opacity: 1; transform: scale(1) translateY(0); }
-}
-
-/* Continuous gold glow pulse after reveal */
-@keyframes honorsGlow {
-    0%, 100% {
-        text-shadow: 0 0 20px rgba(212, 175, 55, 0.4),
-                     0 0 40px rgba(255, 255, 255, 0.2);
-        border-color: rgba(255, 255, 255, 0.2);
-    }
-    50% {
-        text-shadow: 0 0 30px rgba(212, 175, 55, 0.8),
-                     0 0 60px rgba(212, 175, 55, 0.5),
-                     0 0 90px rgba(255, 255, 255, 0.3);
-        border-color: rgba(212, 175, 55, 0.6);
-    }
-}
-
-/* Hide batch text until after the reveal */
-.banner-batch {
-    opacity: 0;
-    animation: fadeInAfterReveal 0.6s ease 2.5s forwards;
-}
-
-.banner-pride,
-.banner-glory {
-    opacity: 0;
-    animation: fadeInAfterReveal 0.6s ease 2.8s forwards;
-}
-
-@keyframes fadeInAfterReveal {
-    to { opacity: 1; }
-}
 /* ===== Smooth Scrolling ===== */
 html { scroll-behavior: smooth; }
 
