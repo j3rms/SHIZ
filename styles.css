@@ -1,0 +1,826 @@
+/* ===== CSS Reset & Base Styles ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-blue: #1e3a5f;
+    --accent-blue: #3b82f6;
+    --neon-blue: #00d4ff;
+    --gold: #d4af37;
+    --gold-light: #f4d03f;
+    --white: #ffffff;
+    --black: #0a0a0a;
+    --dark-gray: #1a1a2e;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+}
+
+body {
+    font-family: 'Poppins', 'Montserrat', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ===== Glassmorphism Card ===== */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(59, 130, 246, 0.2);
+    transition: all 0.4s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4),
+                0 0 30px rgba(59, 130, 246, 0.3),
+                0 0 60px rgba(0, 212, 255, 0.2);
+}
+
+/* ===== Hero Section ===== */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: linear-gradient(135deg, var(--black) 0%, var(--dark-gray) 50%, var(--primary-blue) 100%);
+    overflow: hidden;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.geometric-shape {
+    position: absolute;
+    opacity: 0.1;
+    animation: float 8s ease-in-out infinite;
+}
+
+.shape-1 {
+    width: 300px;
+    height: 300px;
+    background: var(--accent-blue);
+    border-radius: 50%;
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.shape-2 {
+    width: 200px;
+    height: 200px;
+    background: var(--gold);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    top: 60%;
+    right: 15%;
+    animation-delay: 2s;
+}
+
+.shape-3 {
+    width: 150px;
+    height: 150px;
+    background: var(--neon-blue);
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 4s;
+}
+
+.shape-4 {
+    width: 250px;
+    height: 250px;
+    background: var(--accent-blue);
+    clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+    top: 30%;
+    right: 30%;
+    animation-delay: 6s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%       { transform: translateY(-30px) rotate(180deg); }
+}
+
+/* Particles */
+.particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: var(--neon-blue);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--neon-blue),
+                0 0 20px var(--neon-blue),
+                0 0 30px var(--neon-blue);
+    animation: particleFloat 10s ease-in-out infinite;
+}
+
+.particle-1  { top: 15%; left: 20%;  animation-delay: 0s; }
+.particle-2  { top: 25%; right: 25%; animation-delay: 1s; }
+.particle-3  { top: 45%; left: 10%;  animation-delay: 2s; }
+.particle-4  { top: 55%; right: 15%; animation-delay: 3s; }
+.particle-5  { top: 75%; left: 30%;  animation-delay: 4s; }
+.particle-6  { top: 85%; right: 20%; animation-delay: 5s; }
+.particle-7  { top: 35%; left: 40%;  animation-delay: 6s; }
+.particle-8  { top: 65%; right: 35%; animation-delay: 7s; }
+.particle-9  { top: 20%; left: 60%;  animation-delay: 8s; }
+.particle-10 { top: 80%; right: 40%; animation-delay: 9s; }
+.particle-11 { top: 50%; left: 70%;  animation-delay: 0.5s; }
+.particle-12 { top: 40%; right: 5%;  animation-delay: 1.5s; }
+
+@keyframes particleFloat {
+    0%, 100% { transform: translateY(0) scale(1);       opacity: 0.8; }
+    25%       { transform: translateY(-50px) scale(1.2); opacity: 1; }
+    50%       { transform: translateY(-100px) scale(1);  opacity: 0.6; }
+    75%       { transform: translateY(-50px) scale(0.8); opacity: 0.9; }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 20px;
+    animation: fadeInUp 1.5s ease-out;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.congratulations {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--white) 0%, var(--gold) 50%, var(--white) 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes shimmer {
+    0%   { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+.reveal-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 40px;
+    animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        text-shadow: 0 0 20px var(--neon-blue), 0 0 40px var(--accent-blue), 0 0 60px var(--accent-blue);
+    }
+    50% {
+        text-shadow: 0 0 30px var(--neon-blue), 0 0 60px var(--accent-blue), 0 0 90px var(--accent-blue);
+    }
+}
+
+.scroll-indicator {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 40px;
+}
+
+.scroll-indicator span {
+    width: 12px;
+    height: 12px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: scrollBounce 1.5s ease-in-out infinite;
+}
+
+.scroll-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.scroll-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes scrollBounce {
+    0%, 100% { transform: translateY(0);    opacity: 0.5; }
+    50%       { transform: translateY(15px); opacity: 1; }
+}
+
+/* ===== Personal Section ===== */
+.personal-section {
+    padding: 80px 20px;
+    background: linear-gradient(180deg, var(--dark-gray) 0%, var(--black) 100%);
+    position: relative;
+}
+
+/* ===== Banner Card ===== */
+.banner-card {
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    background: linear-gradient(105deg, #060e1e 0%, #0a1830 35%, #0d2550 60%, #0a1a3a 100%);
+    border: 2px solid rgba(0, 180, 255, 0.25);
+    border-radius: 16px;
+    max-width: 960px;
+    margin: 0 auto;
+    min-height: 320px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.8),
+                0 0 40px rgba(0, 140, 255, 0.2);
+}
+
+/* Background layered glow blobs */
+.banner-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 55% 80% at 75% 50%, rgba(15, 60, 130, 0.7) 0%, transparent 70%),
+        radial-gradient(ellipse 30% 60% at 90% 30%, rgba(0, 100, 200, 0.4) 0%, transparent 60%),
+        radial-gradient(ellipse 20% 40% at 10% 80%, rgba(0, 80, 160, 0.3) 0%, transparent 60%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Diagonal accent stripes */
+.banner-diagonals {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.diag {
+    position: absolute;
+    height: 120%;
+    top: -10%;
+    transform: skewX(-14deg);
+}
+
+/* Wide dark-blue slash — the big right panel */
+.diag-1 {
+    width: 52%;
+    background: linear-gradient(180deg, #0e2d5e 0%, #0a2050 100%);
+    opacity: 0.55;
+    right: -4%;
+}
+
+/* Bright neon-blue edge line */
+.diag-2 {
+    width: 6px;
+    background: linear-gradient(180deg, var(--neon-blue), var(--accent-blue));
+    opacity: 0.9;
+    right: 47%;
+    box-shadow: 0 0 12px var(--neon-blue), 0 0 24px var(--accent-blue);
+}
+
+/* Gold accent hairline */
+.diag-3 {
+    width: 3px;
+    background: var(--gold);
+    opacity: 0.75;
+    right: 46%;
+    box-shadow: 0 0 8px var(--gold);
+}
+
+/* Soft blue secondary line */
+.diag-4 {
+    width: 3px;
+    background: var(--accent-blue);
+    opacity: 0.4;
+    right: 49%;
+    box-shadow: 0 0 10px var(--accent-blue);
+}
+
+/* Banner layout */
+.banner-content {
+    position: relative;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: stretch;
+    min-height: 320px;
+}
+
+/* ── Text side ── */
+.banner-text {
+    padding: 36px 40px 36px 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+}
+
+.banner-congrats-label {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    color: var(--neon-blue);
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.banner-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    font-weight: 900;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: 1.1;
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+}
+
+.banner-course {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.7rem, 1.4vw, 0.95rem);
+    font-weight: 700;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    opacity: 0.85;
+}
+
+.banner-school {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.7rem, 1.4vw, 0.9rem);
+    font-weight: 500;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.75;
+}
+
+.banner-honors {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(2rem, 5.5vw, 4rem);
+    font-weight: 900;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    line-height: 1;
+    margin-top: 6px;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    padding: 6px 0;
+}
+
+.banner-batch {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    opacity: 0.7;
+}
+
+.banner-pride {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.85rem, 1.8vw, 1.15rem);
+    font-weight: 900;
+    color: var(--neon-blue);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 10px;
+    text-shadow: 0 0 15px rgba(0, 212, 255, 0.6);
+}
+
+.banner-glory {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.75rem, 1.4vw, 0.95rem);
+    font-weight: 600;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+
+/* ── Photo side ── */
+.banner-photo-wrap {
+    width: clamp(200px, 30vw, 360px);
+    position: relative;
+    overflow: hidden;
+    border-radius: 0 14px 14px 0;
+    background: transparent;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.banner-photo-wrap .photo-frame {
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    border-radius: 0 14px 14px 0;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+    animation: none;
+    display: flex;
+    align-items: flex-end;
+}
+
+.banner-photo-wrap .photo-placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: 0 14px 14px 0;
+    background: transparent;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.banner-photo-wrap .graduation-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: bottom center;
+    display: block;
+    filter: drop-shadow(-6px 0 18px rgba(0, 100, 220, 0.5));
+}
+
+/* ===== Honors Section ===== */
+.honors-section {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: linear-gradient(135deg, var(--black) 0%, var(--primary-blue) 50%, var(--dark-gray) 100%);
+    overflow: hidden;
+    padding: 80px 20px;
+}
+
+.honors-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.diagonal-shape {
+    position: absolute;
+    opacity: 0.05;
+}
+
+.diagonal-1 {
+    width: 400px;
+    height: 400px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    top: -100px;
+    left: -100px;
+}
+
+.diagonal-2 {
+    width: 300px;
+    height: 300px;
+    background: var(--accent-blue);
+    transform: rotate(-45deg);
+    bottom: -50px;
+    right: -50px;
+}
+
+.honors-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    animation: scaleIn 1s ease-out;
+}
+
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+.graduation-cap-icon {
+    margin-bottom: 30px;
+    animation: capBounce 2s ease-in-out infinite;
+}
+
+.cap-svg {
+    width: 100px;
+    height: 100px;
+    filter: drop-shadow(0 0 20px var(--gold));
+}
+
+@keyframes capBounce {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%       { transform: translateY(-15px) rotate(5deg); }
+}
+
+.honors-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 20px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.honors-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(3rem, 10vw, 8rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 25%, var(--gold) 50%, var(--gold-light) 75%, var(--gold) 100%);
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: goldShimmer 4s linear infinite;
+    margin-bottom: 40px;
+    line-height: 1.1;
+}
+
+@keyframes goldShimmer {
+    0%   { background-position: 0% center; }
+    100% { background-position: 300% center; }
+}
+
+/* Confetti */
+.confetti-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    animation: confettiFall 8s linear infinite;
+}
+
+.confetti-1  { background: var(--gold);        left: 10%; animation-delay: 0s; }
+.confetti-2  { background: var(--neon-blue);   left: 20%; animation-delay: 0.5s; }
+.confetti-3  { background: var(--accent-blue); left: 30%; animation-delay: 1s; }
+.confetti-4  { background: var(--white);       left: 40%; animation-delay: 1.5s; }
+.confetti-5  { background: var(--gold);        left: 50%; animation-delay: 2s; }
+.confetti-6  { background: var(--neon-blue);   left: 60%; animation-delay: 2.5s; }
+.confetti-7  { background: var(--accent-blue); left: 70%; animation-delay: 3s; }
+.confetti-8  { background: var(--white);       left: 80%; animation-delay: 3.5s; }
+.confetti-9  { background: var(--gold);        left: 90%; animation-delay: 4s; }
+.confetti-10 { background: var(--neon-blue);   left: 15%; animation-delay: 4.5s; }
+.confetti-11 { background: var(--accent-blue); left: 25%; animation-delay: 5s; }
+.confetti-12 { background: var(--white);       left: 35%; animation-delay: 5.5s; }
+.confetti-13 { background: var(--gold);        left: 45%; animation-delay: 6s; }
+.confetti-14 { background: var(--neon-blue);   left: 55%; animation-delay: 6.5s; }
+.confetti-15 { background: var(--accent-blue); left: 65%; animation-delay: 7s; }
+.confetti-16 { background: var(--white);       left: 75%; animation-delay: 7.5s; }
+
+@keyframes confettiFall {
+    0%   { top: -10%; transform: translateX(0) rotate(0deg);       opacity: 1; }
+    100% { top: 110%; transform: translateX(100px) rotate(720deg); opacity: 0; }
+}
+
+/* ===== Message Section ===== */
+.message-section {
+    padding: 80px 20px;
+    background: linear-gradient(180deg, var(--black) 0%, var(--dark-gray) 100%);
+}
+
+.message-card {
+    padding: 60px 40px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    animation: slideUp 1s ease-out;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.message-content { position: relative; }
+
+.message-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 30px;
+}
+
+.message-text {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.8;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+.message-religious {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    font-weight: 600;
+    color: var(--neon-blue);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* ===== Footer ===== */
+.footer {
+    padding: 40px 20px;
+    background: var(--black);
+    text-align: center;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.footer-text {
+    font-size: 1.1rem;
+    color: var(--white);
+    margin-bottom: 15px;
+    opacity: 0.8;
+}
+
+.heart-icon {
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.2); }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 640px) {
+    .banner-content {
+        grid-template-columns: 1fr;
+    }
+
+    .banner-photo-wrap {
+        width: 100%;
+        height: 280px;
+        border-radius: 0 0 14px 14px;
+        order: -1;
+    }
+
+    .banner-photo-wrap .photo-frame,
+    .banner-photo-wrap .photo-placeholder {
+        border-radius: 14px 14px 0 0;
+        min-height: 280px;
+    }
+
+    .banner-photo-wrap .graduation-photo {
+        border-radius: 14px 14px 0 0;
+    }
+
+    .banner-text {
+        padding: 28px 24px;
+    }
+
+    .diag-1, .diag-2, .diag-3, .diag-4 {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .message-card {
+        padding: 30px 20px;
+    }
+}
+
+/* ===== Cum Laude Surprise Reveal ===== */
+.honors-reveal {
+    position: relative;
+    overflow: hidden;
+    margin: 6px 0;
+}
+
+/* The cover that hides CUM LAUDE initially */
+.honors-reveal-cover {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, #060e1e 0%, #0a1830 50%, #0d2550 100%);
+    z-index: 5;
+    display: flex;
+    align-items: center;
+
+    /* Slide away after 1.5 seconds with smoother duration */
+    animation: coverSlideAway 1.2s cubic-bezier(0.65, 0, 0.35, 1) 1.5s forwards;
+}
+
+.cover-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.75rem, 1.5vw, 1rem);
+    font-weight: 600;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    opacity: 0.5;
+
+    /* Fade out just before the slide starts */
+    animation: coverTextFade 0.5s ease 1.3s forwards;
+}
+
+@keyframes coverTextFade {
+    to { opacity: 0; }
+}
+
+@keyframes coverSlideAway {
+    0%   { transform: translateX(0);     opacity: 1; }
+    100% { transform: translateX(-110%); opacity: 0; }
+}
+
+/* CUM LAUDE starts invisible, then slams in after cover leaves */
+.banner-honors {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(2rem, 5.5vw, 4rem);
+    font-weight: 900;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    line-height: 1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    padding: 6px 0;
+
+    /* Hidden until cover slides away - smoother timing */
+    opacity: 0;
+    transform: scale(0.7) translateY(15px);
+    animation:
+        honorsSlam 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 2s forwards,
+        honorsGlow 2s ease-in-out 2.8s infinite;
+}
+
+/* Dramatic slam-in - smoother transition */
+@keyframes honorsSlam {
+    0%   { opacity: 0; transform: scale(0.7) translateY(15px); }
+    50%  { opacity: 0.8; transform: scale(1.05) translateY(-2px); }
+    70%  { transform: scale(0.98) translateY(1px); }
+    85%  { transform: scale(1.01) translateY(-1px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Continuous gold glow pulse after reveal */
+@keyframes honorsGlow {
+    0%, 100% {
+        text-shadow: 0 0 20px rgba(212, 175, 55, 0.4),
+                     0 0 40px rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+    50% {
+        text-shadow: 0 0 30px rgba(212, 175, 55, 0.8),
+                     0 0 60px rgba(212, 175, 55, 0.5),
+                     0 0 90px rgba(255, 255, 255, 0.3);
+        border-color: rgba(212, 175, 55, 0.6);
+    }
+}
+
+/* Hide batch text until after the reveal */
+.banner-batch {
+    opacity: 0;
+    animation: fadeInAfterReveal 0.6s ease 2.5s forwards;
+}
+
+.banner-pride,
+.banner-glory {
+    opacity: 0;
+    animation: fadeInAfterReveal 0.6s ease 2.8s forwards;
+}
+
+@keyframes fadeInAfterReveal {
+    to { opacity: 1; }
+}
+/* ===== Smooth Scrolling ===== */
+html { scroll-behavior: smooth; }
+
+/* ===== Selection Styling ===== */
+::selection      { background: var(--gold); color: var(--black); }
+::-moz-selection { background: var(--gold); color: var(--black); }

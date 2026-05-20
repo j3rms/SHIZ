@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graduation Surprise - Cum Laude!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="Martsang Pandangal (Phonk Remix)(By DAPBeats).mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Hero Section -->
+   
+
+    <!-- Personal Information Card (Banner Style) -->
+    <section class="personal-section">
+        <div class="container">
+            <div class="personal-card banner-card">
+                <!-- Diagonal accent shapes -->
+                <div class="banner-diagonals">
+                    <div class="diag diag-1"></div>
+                    <div class="diag diag-2"></div>
+                    <div class="diag diag-3"></div>
+                    <div class="diag diag-4"></div>
+                </div>
+
+                <div class="banner-content">
+                    <!-- Left: text -->
+                    <div class="banner-text">
+                        <p class="banner-congrats-label">Congratulations</p>
+                        <h3 class="banner-name">Jeremy Ryan B. Quiroz</h3>
+                        <p class="banner-course">Bachelor of Science in Information Technology</p>
+                        <p class="banner-school">Centro Escolar University - Makati</p>
+
+                        <!-- Cum Laude surprise reveal -->
+                        <div class="honors-reveal">
+                            <div class="honors-reveal-cover">
+                                <span class="cover-text">Class of 2026</span>
+                            </div>
+                            <h2 class="banner-honors">CUM LAUDE</h2>
+                        </div>
+
+                        <p class="banner-batch">BATCH 2026</p>
+                        <p class="banner-pride">WE ARE SO PROUD OF YOU!</p>
+                        <p class="banner-glory">TO GOD BE ALL THE GLORY</p>
+                    </div>
+
+                    <!-- Right: photo -->
+                    <div class="banner-photo-wrap">
+                        <div class="photo-frame">
+                            <div class="photo-placeholder">
+                                <img src="1000019746-removebg-preview.png" alt="Jeremy Ryan B. Quiroz" class="graduation-photo">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+    const music = document.getElementById('bgMusic');
+
+    music.volume = 0.2;
+    music.muted = true; // trick: muted autoplay is always allowed
+
+    window.addEventListener('load', () => {
+        music.play().then(() => {
+            // Autoplay succeeded while muted, now unmute
+            music.muted = false;
+        }).catch(() => {
+            // Still blocked — wait for first interaction
+            const playOnInteraction = () => {
+                music.muted = false;
+                music.play();
+                document.removeEventListener('click', playOnInteraction);
+                document.removeEventListener('touchstart', playOnInteraction);
+                document.removeEventListener('keydown', playOnInteraction);
+                document.removeEventListener('scroll', playOnInteraction);
+            };
+            document.addEventListener('click', playOnInteraction);
+            document.addEventListener('touchstart', playOnInteraction);
+            document.addEventListener('keydown', playOnInteraction);
+            document.addEventListener('scroll', playOnInteraction);
+        });
+    });
+</script>
+
+</body>
+</html>
